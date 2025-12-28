@@ -1,0 +1,60 @@
+{
+    "rules": [
+        {
+            "description": "Follow Python best practices and PEP 8 with type hints",
+            "pattern": "**/*.py",
+            "suggestion": "Write clean, readable Python following PEP 8, prefer dataclasses or Pydantic models where appropriate, and include type hints for all public functions."
+        },
+        {
+            "description": "FastAPI endpoints: use Pydantic models & proper responses",
+            "pattern": "backend/**/*.py",
+            "suggestion": "When adding FastAPI routes: always define request & response Pydantic models, use dependency injection for config, handle validation errors explicitly, and return structured responses."
+        },
+        {
+            "description": "LangGraph / LangChain workflow patterns",
+            "pattern": "backend/trip_planner_agent.py",
+            "suggestion": "Follow LangGraph node composition patterns, keep state transitions pure, add trace metadata for Langfuse, and avoid embedding provider-specific logic deeply inside nodes."
+        },
+        {
+            "description": "Logging & error handling guidance",
+            "pattern": "backend/**/*.py",
+            "suggestion": "Use structured logging (logger.info/debug/error) with contextual data; never swallow exceptions—wrap and rethrow with meaningful messages."
+        },
+        {
+            "description": "React modern patterns",
+            "pattern": "frontend/**/*.{js,jsx,ts,tsx}",
+            "suggestion": "Favor functional components, hooks, derived state minimization, accessible semantic HTML, and Tailwind utility classes over ad‑hoc CSS."
+        },
+        {
+            "description": "API integration in React",
+            "pattern": "frontend/**/*.{js,jsx,ts,tsx}",
+            "suggestion": "Abstract fetch logic into dedicated hooks, handle loading & error states, and avoid inline anonymous functions in large lists for performance."
+        },
+        {
+            "description": "Security & secrets handling",
+            "pattern": "backend/**/*.py",
+            "suggestion": "Never log raw API keys or secrets; ensure environment variables are accessed via a centralized settings module."
+        }
+    ],
+    "context": {
+        "projectType": "full-stack",
+        "technologies": [
+            "Python",
+            "FastAPI",
+            "LangGraph",
+            "LangChain",
+            "OpenAI",
+            "Langfuse",
+            "React",
+            "JavaScript",
+            "Tailwind CSS",
+            "Node.js"
+        ],
+        "architecture": "Multi-agent AI system with React frontend and FastAPI backend",
+        "goals": [
+            "Maintain observability with Langfuse",
+            "Ensure consistent error handling",
+            "Promote modular workflow design"
+        ]
+    }
+}

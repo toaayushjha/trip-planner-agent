@@ -1,0 +1,23 @@
+# Core Application Dependencies
+fastapi==0.104.1
+uvicorn==0.24.0
+pydantic==2.5.0
+python-multipart==0.0.6
+python-dotenv==1.0.0
+requests==2.31.0
+
+# AI/ML Dependencies
+langgraph==0.0.62
+langchain-openai>=0.1.0
+langchain-community>=0.0.10
+pandas==2.1.4
+numpy==1.24.3
+
+# Observability & Monitoring
+langfuse>=3.3.0
+
+# HTTP client compatibility
+# Pin httpx to 0.25.2 to maintain compatibility with Starlette TestClient used by
+# FastAPI 0.104.1. Upgrade path: when bumping FastAPI/Starlette to newer versions,
+# remove this pin or raise it and re-run test suite.
+httpx==0.25.2

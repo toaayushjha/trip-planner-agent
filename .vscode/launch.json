@@ -1,0 +1,52 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Start Backend Server",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/backend/main.py",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}",
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}/backend"
+            },
+            "justMyCode": false
+        },
+        {
+            "name": "Debug Trip Planning",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/backend/trip_planner_agent.py",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}",
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}/backend"
+            },
+            "justMyCode": false
+        },
+        {
+            "name": "Start Frontend",
+            "type": "node",
+            "request": "launch",
+            "program": "${workspaceFolder}/frontend/node_modules/.bin/react-scripts",
+            "args": [
+                "start"
+            ],
+            "cwd": "${workspaceFolder}/frontend",
+            "console": "integratedTerminal",
+            "env": {
+                "BROWSER": "none"
+            }
+        }
+    ],
+    "compounds": [
+        {
+            "name": "Start Full Stack",
+            "configurations": [
+                "Start Backend Server",
+                "Start Frontend"
+            ]
+        }
+    ]
+}

@@ -1,0 +1,54 @@
+name: CI
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+
+jobs:
+  backend:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install dependencies
+        run: |
+          python -m venv venv
+          source venv/bin/activate
+          pip install --upgrade pip
+          pip install -r requirements.txt
+          if [ -f dev-requirements.txt ]; then pip install -r dev-requirements.txt; fi
+      - name: Quality checks (ruff, black, flake8)
+        run: |
+          source venv/bin/activate
+          ruff check backend
+          black --check backend
+          flake8 backend
+      - name: Run tests
+        run: |
+          source venv/bin/activate
+          pytest backend -v --maxfail=1
+
+  frontend-build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "18"
+          cache: "npm"
+          cache-dependency-path: frontend/package-lock.json
+      - name: Install deps
+        working-directory: frontend
+        run: npm install --no-audit --no-fund
+      - name: Build (sanity)
+        working-directory: frontend
+        run: |
+          if [ -f package.json ]; then npm run build --if-present; fi

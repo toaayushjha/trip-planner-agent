@@ -1,0 +1,37 @@
+repos:
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.5.5
+    hooks:
+      - id: ruff
+        args: ["--fix"]
+      - id: ruff-format
+
+  - repo: https://github.com/psf/black
+    rev: 24.4.2
+    hooks:
+      - id: black
+        args: ["--line-length=88"]
+
+  - repo: https://github.com/pycqa/flake8
+    rev: 7.0.0
+    hooks:
+      - id: flake8
+        additional_dependencies: []
+
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+      - id: check-added-large-files
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+      - id: check-ast
+      - id: check-yaml
+
+  - repo: local
+    hooks:
+      - id: pytest-fast
+        name: pytest (fast subset)
+        entry: bash -c "pytest -q backend/tests/test_health.py backend/tests/test_plan_trip_smoke.py"
+        language: system
+        pass_filenames: false
+        stages: [commit]

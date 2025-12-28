@@ -1,0 +1,216 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Install Python Dependencies",
+            "type": "shell",
+            "command": "pip",
+            "args": [
+                "install",
+                "-r",
+                "requirements.txt"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}",
+                "shell": {
+                    "executable": "bash"
+                }
+            },
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared"
+            }
+        },
+        {
+            "label": "Install Dev Dependencies",
+            "type": "shell",
+            "command": "pip",
+            "args": [
+                "install",
+                "-r",
+                "dev-requirements.txt"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}",
+                "shell": {"executable": "bash"}
+            },
+            "group": "build",
+            "presentation": {"echo": true, "reveal": "always", "focus": false, "panel": "shared"},
+            "dependsOn": "Install Python Dependencies"
+        },
+        {
+            "label": "Install Frontend Dependencies",
+            "type": "shell",
+            "command": "npm",
+            "args": [
+                "install"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/frontend"
+            },
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared"
+            }
+        },
+        {
+            "label": "Start Full Stack (Tasks)",
+            "dependsOrder": "parallel",
+            "dependsOn": [
+                "Start Backend",
+                "Start Frontend"
+            ],
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared"
+            }
+        },
+        {
+            "label": "Start Backend",
+            "type": "shell",
+            "command": "python",
+            "args": [
+                "main.py"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/backend",
+                "shell": {
+                    "executable": "bash"
+                }
+            },
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared"
+            },
+            "dependsOn": "Install Python Dependencies"
+        },
+        {
+            "label": "Start Frontend",
+            "type": "shell",
+            "command": "npm",
+            "args": [
+                "start"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/frontend"
+            },
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared"
+            },
+            "dependsOn": "Install Frontend Dependencies"
+        },
+        {
+            "label": "Run Tests",
+            "type": "shell",
+            "command": "python",
+            "args": [
+                "-m",
+                "pytest",
+                "backend/",
+                "-v"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}",
+                "shell": {
+                    "executable": "bash"
+                }
+            },
+            "group": "test",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared"
+            }
+        },
+        {
+            "label": "Format Python Code",
+            "type": "shell",
+            "command": "black",
+            "args": [
+                "backend/",
+                "--line-length",
+                "88"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}",
+                "shell": {
+                    "executable": "bash"
+                }
+            },
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared"
+            }
+        },
+        {
+            "label": "Lint Python Code",
+            "type": "shell",
+            "command": "flake8",
+            "args": [
+                "backend/",
+                "--max-line-length=88"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}",
+                "shell": {
+                    "executable": "bash"
+                }
+            },
+            "group": "test",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared"
+            }
+        },
+        {
+            "label": "Check Formatting (Black --check)",
+            "type": "shell",
+            "command": "black",
+            "args": [
+                "backend/",
+                "--line-length","88",
+                "--check"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}",
+                "shell": {"executable": "bash"}
+            },
+            "group": "test",
+            "presentation": {"echo": true, "reveal": "always", "focus": false, "panel": "shared"}
+        },
+        {
+            "label": "Watch Tests",
+            "type": "shell",
+            "command": "python",
+            "args": [
+                "-m","pytest","backend","-v","-k","","--maxfail=1"
+            ],
+            "options": {"cwd": "${workspaceFolder}","shell": {"executable": "bash"}},
+            "isBackground": false,
+            "group": "test",
+            "presentation": {"echo": true, "reveal": "always", "focus": false, "panel": "shared"}
+        }
+    ]
+}

@@ -1,0 +1,45 @@
+{
+    "name": "trip-planner-agent",
+    "version": "1.0.0",
+    "description": "AI-powered trip planning system with LangGraph, FastAPI, and React",
+    "main": "backend/main.py",
+    "scripts": {
+        "start": "concurrently \"npm run start:backend\" \"npm run start:frontend\"",
+        "start:backend": "cd backend && python main.py",
+        "start:frontend": "cd frontend && npm start",
+        "install:all": "npm run install:backend && npm run install:frontend",
+        "install:backend": "pip install -r requirements.txt",
+        "install:frontend": "cd frontend && npm install",
+        "test": "cd backend && python -m pytest -v",
+        "format": "black backend/ --line-length 88",
+        "lint": "flake8 backend/ --max-line-length=88",
+        "setup": "npm run install:all && npm run format"
+    },
+    "keywords": [
+        "ai",
+        "trip-planning",
+        "langgraph",
+        "fastapi",
+        "react",
+        "openai",
+        "langfuse",
+        "multi-agent"
+    ],
+    "author": "Your Name",
+    "license": "MIT",
+    "devDependencies": {
+        "concurrently": "^8.2.2"
+    },
+    "engines": {
+        "node": ">=16.0.0",
+        "python": ">=3.8.0"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/yourusername/trip-planner-agent.git"
+    },
+    "bugs": {
+        "url": "https://github.com/yourusername/trip-planner-agent/issues"
+    },
+    "homepage": "https://github.com/yourusername/trip-planner-agent#readme"
+}

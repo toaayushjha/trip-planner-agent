@@ -1,0 +1,48 @@
+{
+    "FastAPI Route": {
+        "prefix": "fastapi-route",
+        "body": [
+            "@app.${1|get,post,put,delete,patch}('${2:/endpoint}')",
+            "async def ${3:function_name}(${4:request: ${5:RequestModel}}):",
+            "    \"\"\"${6:Description of the endpoint}\"\"\"",
+            "    try:",
+            "        ${7:# Implementation here}",
+            "        return {\"success\": True, \"data\": ${8:result}}",
+            "    except Exception as e:",
+            "        logger.error(f\"Error in ${3}: {str(e)}\")",
+            "        raise HTTPException(status_code=500, detail=str(e))"
+        ],
+        "description": "FastAPI route template"
+    },
+    "LangGraph Agent": {
+        "prefix": "langgraph-agent",
+        "body": [
+            "@observe(name=\"${1:agent_name}\")",
+            "def ${1:agent_name}(state: ${2:StateType}) -> ${2:StateType}:",
+            "    \"\"\"${3:Description of the agent}\"\"\"",
+            "    ${4:# Agent implementation}",
+            "    return state"
+        ],
+        "description": "LangGraph agent template"
+    },
+    "Pydantic Model": {
+        "prefix": "pydantic-model",
+        "body": [
+            "class ${1:ModelName}(BaseModel):",
+            "    ${2:field_name}: ${3:str} = Field(..., description=\"${4:Field description}\")",
+            "    ${5:optional_field}: Optional[${6:str}] = Field(None, description=\"${7:Optional field description}\")"
+        ],
+        "description": "Pydantic model template"
+    },
+    "LangChain Tool": {
+        "prefix": "langchain-tool",
+        "body": [
+            "@tool",
+            "def ${1:tool_name}(${2:param}: ${3:str}) -> ${4:str}:",
+            "    \"\"\"${5:Tool description}\"\"\"",
+            "    ${6:# Tool implementation}",
+            "    return ${7:result}"
+        ],
+        "description": "LangChain tool template"
+    }
+}

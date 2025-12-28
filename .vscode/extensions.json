@@ -1,0 +1,20 @@
+{
+    "recommendations": [
+        "ms-python.python",
+        "ms-python.flake8",
+        "ms-python.black-formatter",
+        "ms-python.isort",
+        "bradlc.vscode-tailwindcss",
+        "esbenp.prettier-vscode",
+        "dbaeumer.vscode-eslint",
+        "github.copilot",
+        "github.copilot-chat",
+        "ms-vscode.remote-containers",
+        "ms-vscode.remote-ssh",
+        "streetsidesoftware.code-spell-checker"
+    ],
+    "unwantedRecommendations": [
+        "ms-vscode.vscode-github-copilot",  
+        "ms-vscode.vscode-github-copilot-chat" 
+    ]
+}
