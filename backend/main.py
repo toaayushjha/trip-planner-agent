@@ -10,7 +10,7 @@ from dotenv import load_dotenv
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
-from trip_planner_agent import TripRequest, plan_trip
+from backend.trip_planner_agent import TripRequest, plan_trip
 
 from backend.logging_config import configure_logging
 from backend.settings import settings
