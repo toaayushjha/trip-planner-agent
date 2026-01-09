@@ -60,6 +60,8 @@ lerna-debug.log*
 
 # React
 frontend/build/
+frontend/.env
+frontend/.env.development
 frontend/.env.local
 frontend/.env.development.local
 frontend/.env.test.local
